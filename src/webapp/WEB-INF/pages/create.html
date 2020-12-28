@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>Добавить нового пользователя</title>
+    <style>
+        table {
+            width: 100%;
+            border: 6px double black;
+            border-collapse: collapse;
+        }
+        th {
+            text-align: left;
+            background: #F0E68C;
+            padding: 6px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+<table class="click-table" id="user_table">
+    <tr>
+        <thead>
+        <h2 align="center">Добавить пользователя</h2>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Электронная почта</th>
+        </thead>
+        <tbody>
+        <form th:method="post" th:action="@{/user}" th:object="${user}">
+
+            <th><input required type="text" th:field="*{firstName}" id="name"/></th>
+            <div style = "color:red" th:if="${#fields.hasErrors('firstName')}" th:errors = "*{firstName}">Name error </div>
+
+            <th><input required type="text" th:field="*{lastName}" id="SecondName"/></th>
+            <div style = "color:red" th:if="${#fields.hasErrors('lastName')}" th:errors = "*{lastName}">Name error </div>
+
+            <th><input required type="text" th:field="*{email}" id="Email"/></th>
+            <div style = "color:red" th:if="${#fields.hasErrors('email')}" th:errors = "*{email}">Name error </div>
+
+            <th><input type="submit" value="Принять"/></th>
+        </form>
+        </tbody>
+        <th ><a href="/user/all"><input type="button" value="Назад"></a></th>
+    </tr>
+</table>
+</body>
+</html>

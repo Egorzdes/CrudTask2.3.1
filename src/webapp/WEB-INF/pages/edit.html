@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редкатирование пользователя</title>
+
+</head>
+<body>
+<table>
+    <tr align="right" valign="top">
+        <tr></tr>
+        <form th:method="post" th:action="@{/user/{id}(id=${user.getId()})}" th:object="${user}">
+            <th:block><label for="id"></label></th:block>
+            <th:block><input readonly type="number" th:field="*{id}" id="id"/></th:block>
+            <td><label for="name">Введите имя</label></td>
+            <td><input type="text" th:field="*{firstName}" id="name" required/></td>
+            <div style = "color:red" th:if="${#fields.hasErrors('firstName')}" th:errors = "*{firstName}">Name error </div>
+
+            <td><label for="SecondName">Введите фамилию</label></td>
+            <td><input type="text" th:field="*{lastName}" id="SecondName" required/></td>
+            <div style = "color:red" th:if="${#fields.hasErrors('lastName')}" th:errors = "*{lastName}">Name error </div>
+
+            <td><label for="Email">Введите электронную почту</label></td>
+            <td><input type="text" th:field="*{email}" id="Email" required/></td>
+            <div style = "color:red" th:if="${#fields.hasErrors('email')}" th:errors = "*{email}">Name error </div>
+
+            <td><input type="submit" value="Обновить"/></td>
+        </form>
+        <form th:method="delete" th:action="@{/user/__*{id}__}" th:object = "${user}">
+            <td><input type="submit" value="Удалить"/>
+        </form>
+            <td><a href="/user/all"><input type="button" value="Назад"/></a></td>
+        </form>
+    </tr>
+</table>
+</body>
+</html>
